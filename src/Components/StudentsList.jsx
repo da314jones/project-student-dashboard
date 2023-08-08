@@ -1,5 +1,6 @@
 import React from 'react'
 import "./StudentsList.css"
+import Student from './Student'
 
 export default function StudentsList({students}) {
   return (
@@ -7,7 +8,7 @@ export default function StudentsList({students}) {
       <h2>All Students</h2>
       <ul>
         {students.map((student) => (
-            <li key={student.id} student={student}>{student.names.preferredName}</li>
+          <Student key={student.id} student={student} />
         ))}
       </ul>
     </div>

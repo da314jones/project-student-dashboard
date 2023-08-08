@@ -1,13 +1,13 @@
 import React from 'react'
-import Notes from './Note'
+import Note from './Note'
 
-export default function StudentDetails({details}) {
+export default function StudentDetails({details, studentId, onAddNote}) {
   return (
     <div>
       <h4>CodeWars:</h4>
       <p>Current Total:</p>
       <p>Last Week</p>
-      <p>Goal:
+      <p>Goal:</p>
         <p>Percent of Goal Achieved:</p>
         <h4>Scores:</h4>
         <p>Assignments:</p>
@@ -19,8 +19,7 @@ export default function StudentDetails({details}) {
         <p>Mock Interview:</p>
         <p>Git HUb:</p>
         <button>Notes</button>
-        <Notes notes={details.notes} />
-      </p>
-    </div>
+        <Note notes={details.notes} studentId={studentId} onAddNote={onAddNote}/>
+        </div>
   )
 }
