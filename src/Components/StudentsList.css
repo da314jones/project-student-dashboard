@@ -1,4 +1,6 @@
-
+.student-list {
+    width: 100%;
+}
 .student-list ul {
     list-style: none;
     padding: 0;

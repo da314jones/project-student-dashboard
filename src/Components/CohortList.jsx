@@ -1,4 +1,5 @@
 import React from 'react'
+import "./CohortList.css"
 
 export default function CohortList({cohorts, onCohortClick}) {
   
@@ -17,7 +18,7 @@ export default function CohortList({cohorts, onCohortClick}) {
   return (
     <div className="cohorts" >
       <h2>Choose a Class by Start Date</h2>
-      <button onClick={() => onCohortClick("all")}>All Student</button>
+      <h3><button onClick={() => onCohortClick("all")}>All Students</button></h3>
       {Object.keys(cohortGroups).map((cohort, index) => (
         <button key={index} onClick={() => onCohortClick(cohort)}>{cohort}</button>
       ))}

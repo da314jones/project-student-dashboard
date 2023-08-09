@@ -1,0 +1,23 @@
+.note {
+    border: 2px solid green;
+    /*display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center; */
+ }
+
+ .form {
+    display: flex;
+    flex-direction: column;
+ }
+
+input {
+    width: 25%;
+}
+textarea {
+   width: 60%;
+}
+
+#add-note {
+    width: 20%;
+}
