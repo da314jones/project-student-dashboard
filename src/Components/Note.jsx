@@ -5,11 +5,12 @@ export default function Note({ studentId, onAddNote, notes }) {
   const [commenter, setCommenter] = useState("");
   const [comment, setComment] = useState("");
 
+
   function handleNoteSubmit(e) {
     e.preventDefault();
-    onAddNote([...notes, { commenter, comment }]);
-    setCommenter("");
-    setComment("");
+    onAddNote({ commenter, comment });
+     setCommenter(" ");
+     setComment(" ");
   }
 
   return (
@@ -34,7 +35,7 @@ export default function Note({ studentId, onAddNote, notes }) {
         <button id="add-note">Add Note</button>
       </form>
       {notes.map((note, index) => (
-        <div key={studentId}>
+        <div key={`${studentId}-${index}`}>
           <p>Commenter: {note.commenter}</p>
           <p>Comment: {note.comment}</p>
         </div>

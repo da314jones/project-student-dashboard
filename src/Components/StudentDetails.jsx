@@ -2,7 +2,7 @@ import { useState } from "react";
 import Note from "./Note";
 import "./StudentDetails.css";
 
-export default function StudentDetails({ details, studentId, onAddNote, notes, showMore }) {
+export default function StudentDetails({ details, studentId, onAddNote, notes }) {
 const [showNotes, setShowNotes] = useState(false);
 const toggleNotes = () => {
   setShowNotes(prevShowNotes => !prevShowNotes)
