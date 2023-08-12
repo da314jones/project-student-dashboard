@@ -2,7 +2,27 @@
 border: 2px solid blue;
 }
 
-#note-button {
-    width: ;
+.on-track {
+    color: greenyellow;
 }
 
+.off-track {
+    color: red;
+}
+
+.btn-primary {
+    border-radius: 5px;
+    margin: auto;
+    width: 20%;
+}
+
+button {
+    border-radius: 5px;
+    margin: auto;
+    justify-content: center;
+    align-items: center;
+    width: 20%;
+}
+.lgi {
+    background-color: rgb(222, 217, 217);
+}

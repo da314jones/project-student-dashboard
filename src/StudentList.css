@@ -1,0 +1,6 @@
+.student-list {
+    display: grid;
+    flex-direction: column;
+        width: 90%; /* Adjust as needed */
+    /* Optional: Add other styles for this component */
+  }

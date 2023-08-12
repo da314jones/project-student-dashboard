@@ -1,15 +1,10 @@
 .cohorts {
+  z-index: 1;
     width: 40%; 
-    border: 2px solid red;display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .cohorts button {
-    width: 80%;
     display: flex;
     flex-direction: column;
-    border-radius: 5px;
+    align-items: center;
+    height: 50%;
   }
   
   .cohorts h3 {
@@ -17,4 +12,30 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+  }
+
+  h2 {
+    color: whitesmoke;
+    text-align: center;
+    font-size: pt;
+  }
+
+  .cohort-button {
+    color: whitesmoke;
+    background-color: black;
+    margin: 5px;
+    padding: 5px;
+    height: 50px;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    border-radius: 5px;
+    border-radius: 5px;
+  }
+  
+  .all-button {
+    width: 40%;
+    color: whitesmoke;
+    background-color: blue;
+    border-radius: 5px;
   }

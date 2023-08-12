@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import "./Note.css";
+import FloatingLabel from 'react-bootstrap/FloatingLabel';
+import Form from 'react-bootstrap/Form';
 
 export default function Note({ studentId, onAddNote, notes }) {
   const [commenter, setCommenter] = useState("");
@@ -16,24 +18,24 @@ export default function Note({ studentId, onAddNote, notes }) {
   return (
     <div className="note">
       <h4>1-0n-1 Notes</h4>
-      <form onSubmit={handleNoteSubmit} className="form">
-      <label htmlFor="commenter" id="commenter" >Commenter </label>
-        <input
-          type="text"
-          value={commenter}
-          onChange={(e) => setCommenter(e.target.value)}
+      <Form onSubmit={handleNoteSubmit} className="form">
+        <FloatingLabel controlId="floatingCommenter" label="Commenter">
+          <Form.Control
+            type="text"
+            value={commenter}
+            onChange={(e) => setCommenter(e.target.value)}
           />
-        <label htmlFor="comment">Comment</label>
-        <textarea
-          name="comment"
-          id="comment"
-          cols="30"
-          rows="5"
-          value={comment}
-          onChange={(e) => setComment(e.target.value)}
-          ></textarea>
-        <button id="add-note">Add Note</button>
-      </form>
+        </FloatingLabel>
+        <FloatingLabel controlId="floatingComment" label="Comment">
+          <Form.Control
+            as="textarea"
+            value={comment}
+            onChange={(e) => setComment(e.target.value)}
+            style={{ height: '100px' }}
+          />
+        </FloatingLabel>
+        <button id="add-note" className="btn btn-primary" >Add Note</button>
+      </Form>
       {notes.map((note, index) => (
         <div key={`${studentId}-${index}`}>
           <p>Commenter: {note.commenter}</p>

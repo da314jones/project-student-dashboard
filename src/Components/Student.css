@@ -1,9 +1,25 @@
 .student {
     border: 2px solid black;
-    margin: 20px
-    ;
+    margin: 20px;
+    background: url("public/pursuit_arrowbg_purple.jpg");
+    width: 750px;
+    padding: 20px; 
 }
 
 .show-more {
     width: 15%;
 }
+
+.student-image {
+    width: 100px;
+}
+
+.card-body {
+    color: whitesmoke;
+}
+
+#show-more {
+    display: block;
+    margin: 0 auto;
+  }
+  

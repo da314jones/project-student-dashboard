@@ -1,10 +1,12 @@
 import React from 'react'
 import "./CohortList.css"
+import Button from "react-bootstrap/Button";
+
 
 export default function CohortList({cohorts, onCohortClick}) {
   
   const cohortGroups = cohorts.reduce((result, cohortCode) => {
-    const [season, year] = cohortCode.split(/(\d+)/).filter(Boolean);
+    const [season, year] = cohortCode.split(/(\d+)/);
     const readableCohort = `${season} ${year}`;
 
     if ( !result[readableCohort]) {
@@ -15,12 +17,13 @@ export default function CohortList({cohorts, onCohortClick}) {
   }, {});
 
 
+
   return (
     <div className="cohorts" >
       <h2>Choose a Class by Start Date</h2>
-      <h3><button onClick={() => onCohortClick("all")}>All Students</button></h3>
+      <h3><button className='all-button'variant="" onClick={() => onCohortClick("All")}>All Students</button></h3>
       {Object.keys(cohortGroups).map((cohort, index) => (
-        <button key={index} onClick={() => onCohortClick(cohort)}>{cohort}</button>
+        <button key={index} className='cohort-button' onClick={() => onCohortClick(cohort)}>{cohort}</button>
       ))}
     </div>
   )

@@ -1,6 +1,15 @@
 .student-list {
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
     width: 100%;
 }
+
+.student-title {
+justify-content: center;
+}
+
 .student-list ul {
     list-style: none;
     padding: 0;
@@ -12,4 +21,9 @@
     background-color: #f9f9f9;
     padding: 10px;
     margin: 10px;
+}
+h2 {
+    margin: 40px;
+    font-size: 28pt;
+    color: blue;
 }

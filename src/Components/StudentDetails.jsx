@@ -1,37 +1,99 @@
 import { useState } from "react";
 import Note from "./Note";
 import "./StudentDetails.css";
+import { Card, ListGroup } from "react-bootstrap";
 
-export default function StudentDetails({ details, studentId, onAddNote, notes }) {
-const [showNotes, setShowNotes] = useState(false);
-const toggleNotes = () => {
-  setShowNotes(prevShowNotes => !prevShowNotes)
-}
-  const total = details.codewars.current.total;
-  const goal = details.codewars.goal.total;
-  const percentage = ((total / goal) * 100).toFixed(0);
-const assignments = (details.cohort.scores.assignments * 100)
-const projects = (details.cohort.scores.projects * 100)
-const certifications = (details.cohort.scores.assessments * 100)
+export default function StudentDetails({
+  details,
+  studentId,
+  onAddNote,
+  notes,
+}) {
+  const [showNotes, setShowNotes] = useState(false);
+  const toggleNotes = () => {
+    setShowNotes((prevShowNotes) => !prevShowNotes);
+  };
+  const { current, goal } = details.codewars;
+  const { assignments, projects, assessments } = details.cohort.scores;
+  const percentage = ((current.total / goal.total) * 100).toFixed(0);
+  const { resume, linkedin, github, mockInterview } = details.certifications;
+
+  const onTrack = () => {
+    return resume && linkedin && mockInterview && github && current.total >= 600
+      ? "On Track"
+      : "Off Track";
+  };
+
+  const trackStatus = onTrack();
 
   return (
-    <div className="student-details">
-      <h4>CodeWars:</h4>
-      <p>Current Total: {details.codewars.current.total}</p>
-      <p>Last Week: {details.codewars.current.lastWeek}</p>
-      <p>Goal: {details.codewars.goal.total}</p>
-      <p>Percent of Goal Achieved: {percentage}%</p>
-      <h4>Scores:</h4>
-      <p>Assignments: {assignments}%</p>
-      <p>Projects: {projects}%</p>
-      <p>Assessments: {certifications}%</p>
-      <h4>Certifications:</h4>
-      <p>Resume: {details.certifications.resume}</p>
-      <p>LinkedIn: {details.certifications.linkedin}</p>
-      <p>Mock Interview: {details.certifications.github}</p>
-      <p>Git Hub: {details.certifications.mockInterview}</p>
-      <button onClick={toggleNotes} id="note-button">Notes</button>
-      {showNotes && <Note showNotes={showNotes} studentId={studentId} onAddNote={onAddNote} notes={notes} />}
-    </div>
+    <Card className="student-details">
+      <Card.Title style={{color: "whitesmoke", backgroundColor: "black"}} >CodeWars:</Card.Title>
+        <ListGroup>
+          <ListGroup.Item className="lgi" >Current Total: {current.total}</ListGroup.Item>
+          <ListGroup.Item className="lgi" >Last Week: {current.lastWeek}</ListGroup.Item>
+          <ListGroup.Item className="lgi" >Goal: {goal.total}</ListGroup.Item>
+          <ListGroup.Item className="lgi" >
+            Percent of Goal Achieved: {percentage}%
+          </ListGroup.Item>
+        </ListGroup>
+
+      <Card.Title style={{color: "whitesmoke", backgroundColor: "black"}} >Scores:</Card.Title>
+      <ListGroup>
+        <ListGroup.Item className="lgi" >Assignments: {assignments * 100}%</ListGroup.Item>
+        <ListGroup.Item className="lgi" >Projects: {projects * 100}%</ListGroup.Item>
+        <ListGroup.Item className="lgi" >Assessments: {assessments * 100}%</ListGroup.Item>
+      </ListGroup>
+
+      <Card.Title style={{color: "whitesmoke", backgroundColor: "black"}} >Certifications:</Card.Title>
+      <ListGroup>
+        <ListGroup.Item className="lgi" >Resume: {resume ? "✅" : "❌"}</ListGroup.Item>
+        <ListGroup.Item className="lgi" >LinkedIn: {linkedin ? "✅" : "❌"}</ListGroup.Item>
+        <ListGroup.Item className="lgi" >
+          Mock Interview: {mockInterview ? "✅" : "❌"}
+        </ListGroup.Item>
+        <ListGroup.Item className="lgi" >Git Hub: {github ? "✅" : "❌"}</ListGroup.Item>
+
+      </ListGroup>
+      <Card.Title style={{color: "whitesmoke", backgroundColor: "black"}} >Status:</Card.Title>
+      <ListGroup>
+        <ListGroup.Item
+          className={trackStatus === "On Track" ? "on-track" : "off-track"}
+        >
+          {onTrack()}
+        </ListGroup.Item>
+      </ListGroup>
+
+      <button onClick={toggleNotes} className="btn btn-primary" id="note-button">
+        {showNotes ? "Hide Notes" : "Notes"}
+      </button>
+      {showNotes && (
+        <Note
+          showNotes={showNotes}
+          studentId={studentId}
+          onAddNote={onAddNote}
+          notes={notes}
+        />
+      )}
+    </Card>
   );
 }
+
+// import ListGroup from 'react-bootstrap/ListGroup';
+
+// function HorizontalResponsiveExample() {
+//   return (
+//     <>
+//       {['sm', 'md', 'lg', 'xl', 'xxl'].map((breakpoint) => (
+//         <ListGroup key={breakpoint} horizontal={breakpoint} className="my-2">
+//           <ListGroup.Item>This ListGroup</ListGroup.Item>
+//           <ListGroup.Item>renders horizontally</ListGroup.Item>
+//           <ListGroup.Item>on {breakpoint}</ListGroup.Item>
+//           <ListGroup.Item>and above!</ListGroup.Item>
+//         </ListGroup>
+//       ))}
+//     </>
+//   );
+// }
+
+// export default HorizontalResponsiveExample;
