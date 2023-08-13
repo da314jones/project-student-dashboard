@@ -4,6 +4,9 @@
     background: url("public/pursuit_arrowbg_purple.jpg");
     width: 750px;
     padding: 20px; 
+    transition: transform .3s ease, z-index 0s ease .3s, box-shadow .3s ease;
+    position: relative;
+    z-index: 1;
 }
 
 .show-more {
@@ -11,8 +14,13 @@
 }
 
 .student-image {
-    width: 100px;
-}
+    width: 150px;
+} 
+
+.student:hover  {
+    transform: scale(1.2);
+    z-index: 2;
+} 
 
 .card-body {
     color: whitesmoke;
@@ -22,4 +30,6 @@
     display: block;
     margin: 0 auto;
   }
+  
+
   

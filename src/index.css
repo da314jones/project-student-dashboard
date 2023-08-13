@@ -32,6 +32,10 @@
   .header {
     background: blue;
     text-align: center;
-    width: 190vh;
+    width: 191.55vh;
     z-index: 1;
+  }
+
+  .view-button {
+    z-index: 3;
   }

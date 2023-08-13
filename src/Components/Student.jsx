@@ -20,11 +20,11 @@ export default function Student({ student }) {
     <Card className="student">
       <Card.Img
         src={student.profilePhoto}
-        className="student-image"
+        className={`student-image ${showMore ? "enlarge" : ""}`}
         alt={`${student.names.preferredName}'s profile`}
       />
       <Card.Body className="card-body">
-        <Card.Title>{student.names.preferredName}</Card.Title>
+        <Card.Title className="name-title">{student.names.preferredName}</Card.Title>
         <Card.Text>{student.username}</Card.Text>
         <Card.Text>{student.dob}</Card.Text>
         <Button className="detail-button" variant="info" onClick={toggleDetails} id="show-more">
