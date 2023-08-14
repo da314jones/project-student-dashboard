@@ -4,16 +4,12 @@ import "./Student.css";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 
-export default function Student({ student }) {
+export default function Student({ student, onAddNote, notes }) {
   const [showMore, setShowMore] = useState(false);
-  const [notes, setNotes] = useState(student.notes || []);
+  const [notes, setNotes] = useState(student.notes || [])
 
-  const toggleDetails = () => {
+  const toggleShowMore = () => {
     setShowMore((prevShowMore) => !prevShowMore);
-  };
-
-  const handleAddNote = (note) => {
-    setNotes([...notes, note]);
   };
 
   return (
@@ -24,25 +20,29 @@ export default function Student({ student }) {
         alt={`${student.names.preferredName}'s profile`}
       />
       <Card.Body className="card-body">
-        <Card.Title className="name-title">{student.names.preferredName}</Card.Title>
+        <Card.Title className="name-title">
+          {student.names.preferredName}
+        </Card.Title>
         <Card.Text>{student.username}</Card.Text>
         <Card.Text>{student.dob}</Card.Text>
-        <Button className="detail-button" variant="info" onClick={toggleDetails} id="show-more">
+        <Button
+          className="detail-button"
+          variant="info"
+          style={{ width: " 20%" }}
+          id="showMore"
+          onClick={toggleShowMore}
+        >
           {showMore ? "Show Less..." : "Show More..."}
         </Button>
         {showMore && (
           <StudentDetails
-            showMore={showMore}
-            details={student}
-            onAddNote={handleAddNote}
-            notes={notes}
-          />
+            student={student}
+            onAddNote={onAddNote} 
+            notes={notes}/>
         )}
       </Card.Body>
     </Card>
   );
 }
-
-
 
 

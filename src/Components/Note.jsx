@@ -1,22 +1,27 @@
 import React, { useState } from "react";
 import "./Note.css";
-import FloatingLabel from 'react-bootstrap/FloatingLabel';
-import Form from 'react-bootstrap/Form';
+import FloatingLabel from "react-bootstrap/FloatingLabel";
+import Form from "react-bootstrap/Form";
 
-export default function Note({ studentId, onAddNote, notes }) {
+export default function Note({
+  student,
+  notes,
+  onAddNote
+}) {
   const [commenter, setCommenter] = useState("");
   const [comment, setComment] = useState("");
 
-
   function handleNoteSubmit(e) {
     e.preventDefault();
-    onAddNote({ commenter, comment });
-     setCommenter(" ");
-     setComment(" ");
+    const newNote = { commenter, comment };
+    onAddNote(newNote)
+    setNotes(newNotes)
+    setCommenter(" ");
+    setComment(" ");
   }
 
   return (
-    <div className="note">
+    <div className="existingNote">
       <h4>1-0n-1 Notes</h4>
       <Form onSubmit={handleNoteSubmit} className="form">
         <FloatingLabel controlId="floatingCommenter" label="Commenter">
@@ -31,13 +36,19 @@ export default function Note({ studentId, onAddNote, notes }) {
             as="textarea"
             value={comment}
             onChange={(e) => setComment(e.target.value)}
-            style={{ height: '100px' }}
+            style={{ height: "100px" }}
           />
         </FloatingLabel>
-        <button id="add-note" className="btn btn-primary" >Add Note</button>
+        <button
+          id="add-note"
+          className="btn btn-primary"
+          onClick={handleNoteSubmit}
+        >
+          Add Note
+        </button>
       </Form>
       {notes.map((note, index) => (
-        <div key={`${studentId}-${index}`}>
+        <div key={`existing-note-${index}`}>
           <p>Commenter: {note.commenter}</p>
           <p>Comment: {note.comment}</p>
         </div>

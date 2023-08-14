@@ -1,7 +1,13 @@
 import React from "react";
-import "./StudentGrid.css"; // Make sure to adjust the CSS file name accordingly
+import "./StudentGrid.css"; 
 
-export default function StudentGrid({ students, handleStudentClick }) {
+export default function StudentGrid({
+  students,
+  handleStudentClick,
+  setSelectedCohort,
+  onAddNote,
+  notes
+}) {
   const cohortGroups = students.reduce((result, student) => {
     const cohortCode = student.cohort.cohortCode;
     const [season, year] = cohortCode.split(/(\d+)/);
@@ -14,11 +20,6 @@ export default function StudentGrid({ students, handleStudentClick }) {
     return result;
   }, {});
 
-  handleStudentClick = (student) => {
-    setSelectedStudent(student);
-    setView("list")
-  }
-
   return (
     <div className="student-grid">
       {Object.keys(cohortGroups).map((cohort, index) => (
@@ -26,9 +27,11 @@ export default function StudentGrid({ students, handleStudentClick }) {
           <h3>{cohort}</h3>
           <div className="cohort-students">
             {cohortGroups[cohort].map((student, studentIndex) => (
-              <div key={studentIndex}
-               className="student-card"
-               onClick={() => handleStudentClick(student)}>
+              <div
+                key={studentIndex}
+                className="student-card"
+                onClick={() => handleStudentClick(student)}
+              >
                 <img
                   src={student.profilePhoto}
                   alt={`${student.names.preferredName}'s profile`}

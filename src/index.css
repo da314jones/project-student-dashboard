@@ -12,8 +12,13 @@
   }
   
   .student-count {
+    display: flex;
+    justify-content: center; 
+     align-items: center;
     text-decoration: underline;
-    font-size: 20pt
+    font-size: 20pt;
+    color: black;
+    z-index: 3;
   }
   
   .background-video {
@@ -36,6 +41,8 @@
     z-index: 1;
   }
 
-  .view-button {
+
+  .gridView-button {
     z-index: 3;
+    width: 5px;
   }
