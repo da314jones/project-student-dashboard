@@ -13,9 +13,10 @@ function App() {
   const [view, setView] = useState("list");
   const [notes, setNotes] = useState([]);
 
-  const onAddNote = (newNote) => {
-    setNotes([...notes, newNote])
-  }
+  const onAddNote = (newNote, studentId) => {
+    setNotes({...notes, [studentId] : [...(notes[studentId] || []), newNote],
+  });
+};
 
   function onCohortClick(cohort) {
     setSelectedCohort(cohort);
@@ -40,7 +41,7 @@ function App() {
     return students.length;
   };
 
-  const handleStudentClick = (student) => {
+  const handleStudentClick = (student, onAddNote, studentNotes) => {
     setSelectedStudent(student);
     setView("details");
     return students.length;
@@ -58,7 +59,7 @@ function App() {
             src="public/pursuit-gray_with_arrow-small (Original).mp4"
             type="video/mp4"
           />
-        </video>
+        </video> 
         <div className="header">
           <h1 className="display-3">Student Dashboard</h1>
           <br />
@@ -92,7 +93,7 @@ function App() {
 
           />
         ) : (
-          <StudentDetails student={selectedStudent} />
+          <StudentDetails student={selectedStudent} onAddNote={onAddNote} />
         )
         )}
       </div>

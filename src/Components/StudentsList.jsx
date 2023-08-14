@@ -20,7 +20,7 @@ export default function StudentsList({
               key={student.id}
               student={student}
               onAddNote={onAddNote}
-              notes={notes}
+              studentNotes={notes[student.id]}
             />
           );
         })}

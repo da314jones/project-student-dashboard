@@ -4,13 +4,22 @@ import "./Student.css";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 
-export default function Student({ student, onAddNote, notes }) {
+export default function Student({ student, onAddNote, studentNotes }) {
+  console.log("Student onAddNote:", onAddNote);
   const [showMore, setShowMore] = useState(false);
   const [notes, setNotes] = useState(student.notes || [])
 
   const toggleShowMore = () => {
     setShowMore((prevShowMore) => !prevShowMore);
   };
+
+const handleAddNote = (newNote) => {
+  setNotes([...notes, newNote]);
+  onAddNote(student.id, newNote);
+}
+
+
+
 
   return (
     <Card className="student">
@@ -37,8 +46,9 @@ export default function Student({ student, onAddNote, notes }) {
         {showMore && (
           <StudentDetails
             student={student}
-            onAddNote={onAddNote} 
-            notes={notes}/>
+            onAddNote={handleAddNote} 
+            notes={notes}
+            />
         )}
       </Card.Body>
     </Card>

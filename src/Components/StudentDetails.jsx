@@ -8,6 +8,7 @@ export default function StudentDetails({
   onAddNote,
   notes
 }) {
+  console.log("StudentDetails onAddNote:", onAddNote);
   const [showNotes, setShowNotes] = useState(false);
   const toggleNotes = () => {
     setShowNotes((prevShowNotes) => !prevShowNotes);
@@ -27,6 +28,7 @@ export default function StudentDetails({
   };
 
   const trackStatus = onTrack();
+
 
   return (
     <Card className="student-details">

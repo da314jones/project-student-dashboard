@@ -14,8 +14,7 @@ export default function Note({
   function handleNoteSubmit(e) {
     e.preventDefault();
     const newNote = { commenter, comment };
-    onAddNote(newNote)
-    setNotes(newNotes)
+    onAddNote(newNote, student.id)
     setCommenter(" ");
     setComment(" ");
   }
@@ -42,12 +41,12 @@ export default function Note({
         <button
           id="add-note"
           className="btn btn-primary"
-          onClick={handleNoteSubmit}
+          type="submit"
         >
           Add Note
         </button>
       </Form>
-      {notes.map((note, index) => (
+      {notes && notes.map((note, index) => (
         <div key={`existing-note-${index}`}>
           <p>Commenter: {note.commenter}</p>
           <p>Comment: {note.comment}</p>
