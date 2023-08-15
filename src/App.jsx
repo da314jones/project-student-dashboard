@@ -64,7 +64,7 @@ function App() {
       <div className="parent">
         <video className="background-video" autoPlay muted>
           <source
-            src="public/pursuit-gray_with_arrow-small (Original).mp4"
+            src="/pursuit-gray_with_arrow-small (Original).mp4"
             type="video/mp4"
           />
         </video> 
