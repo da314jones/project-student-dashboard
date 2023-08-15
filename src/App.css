@@ -13,11 +13,3 @@ h1 {
     width: 5px;
 }
 
-.student-count {
-    display: flex;
-    flex-direction: center;
-    align-items: center;
-    margin: 300px;
-    z-index: 3;
-    color: black;
-  } 

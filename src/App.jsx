@@ -10,7 +10,7 @@ function App() {
   console.log(students);
   const [selectedCohort, setSelectedCohort] = useState("All");
   const [selectedStudent, setSelectedStudent] = useState(null);
-  const [view, setView] = useState("list");
+  const [view, setView] = useState("grid");
   const [notes, setNotes] = useState([]);
 
   const onAddNote = (newNote, studentId) => {

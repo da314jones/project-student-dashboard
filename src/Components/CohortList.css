@@ -17,7 +17,7 @@
   h2 {
     color: whitesmoke;
     text-align: center;
-    font-size: pt;
+    width: 100%;
   }
 
   .cohort-button {
@@ -34,8 +34,30 @@
   }
   
   .all-button {
-    width: 40%;
+    height: 1.5em;
+    width: 50%;
     color: whitesmoke;
     background-color: blue;
     border-radius: 5px;
+    font-size: 26pt;
   }
+
+  .spring-cohort  {
+    background-color: #28e60b;
+    color: #555;
+  }
+
+  .summer-cohort {
+    background-color: yellow;
+    color: #555;
+  }
+
+.autumn-cohort {
+  background-color: #e0840b;
+  color: #555;
+}
+
+.winter-cohort {
+  background-color: #27bce9;
+  color: #555;
+}

@@ -51,12 +51,13 @@ export default function StudentGrid({
         ? "On Track"
         : "Off Track";
     }
-    return "N/A"; 
+    return "N/A";
   };
 
   const trackStatus = onTrack();
 
   return (
+    <div className="layout">
     <div className="student-grid">
       {Object.keys(cohortGroups).map((cohort, index) => (
         <div key={index}>
@@ -65,11 +66,10 @@ export default function StudentGrid({
             {cohortGroups[cohort].map((student, studentIndex) => (
               <div
                 key={studentIndex}
-                className={`student-card ${
-                  selectedStudent && student.id === selectedStudent.id
+                className={`student-card ${selectedStudent && student.id === selectedStudent.id
                     ? "selected"
                     : ""
-                }`}
+                  }`}
                 onClick={() => handleGridClick(student)}
               >
                 <img
@@ -79,104 +79,113 @@ export default function StudentGrid({
                 />
                 <p className="student-name">{student.names.preferredName}</p>
                 <p className="cohort-code">{student.cohort.cohortCode}</p>
+                <button onClick={(e) => {
+                e.stopPropagation(); // Prevent the card's click event from firing
+                unenrollStudent(student.id);
+              }} className="unenroll-button">
+                Unenroll
+              </button>
               </div>
             ))}
           </div>
         </div>
       ))}
       {selectedStudent && (
-        <Modal show={selectedStudent !== null} onHide={handleClose}>
-          <Modal.Header closeButton>
-            <Modal.Title>{selectedStudent?.names?.preferredName}</Modal.Title>
-          </Modal.Header>
-          <Modal.Body className="gridView-modal">
-            <Container>
-              <Row>
-                <Col xs={12} md={8}>
-                  <img
-                    src={selectedStudent?.profilePhoto}
-                    alt={`${selectedStudent?.name?.preferredName}'s profile`}
-                    className="student-image"
-                  />
-                </Col>
-                <Col xs={12} md={4}>
-                  <Card className="gridView-studentDetails">
-                    <Card.Title>CodeWars:</Card.Title>
-                    <ListGroup>
-                      <ListGroup.Item>
-                        Current Total: {selectedStudent.codewars.current.total}
-                      </ListGroup.Item>
-                      <ListGroup.Item>
-                        Last Week: {selectedStudent.codewars.current.lastWeek}
-                      </ListGroup.Item>
-                      <ListGroup.Item>
-                        Goal: {selectedStudent.codewars.goal.total}
-                      </ListGroup.Item>
-                      <ListGroup.Item>
-                        Percent of Goal Achieved:{" "}
-                        {(
-                          (selectedStudent.codewars.current.total /
-                            selectedStudent.codewars.goal.total) *
-                          100
-                        ).toFixed(0)}
-                        %
-                      </ListGroup.Item>
-                    </ListGroup>
-                  </Card>
-                  <Card>
-                    <Card.Title>Scores:</Card.Title>
-                    <ListGroup>
-                      <ListGroup.Item>
-                        Assignments:{" "}
-                        {selectedStudent.cohort.scores.assignments * 100}%
-                      </ListGroup.Item>
-                      <ListGroup.Item>
-                        Projects: {selectedStudent.cohort.scores.projects * 100}
-                        %
-                      </ListGroup.Item>
-                      <ListGroup.Item>
-                        Assessments:{" "}
-                        {selectedStudent.cohort.scores.assessments * 100}%
-                      </ListGroup.Item>
-                    </ListGroup>
-                  </Card>
-                  <Card>
-                    <Card.Title>Certifications:</Card.Title>
-                    <ListGroup>
-                      <ListGroup.Item>
-                        Resume:{" "}
-                        {selectedStudent.certifications.resume ? "✅" : "❌"}
-                      </ListGroup.Item>
-                      <ListGroup.Item>
-                        LinkedIn:{" "}
-                        {selectedStudent.certifications.linkedin ? "✅" : "❌"}
-                      </ListGroup.Item>
-                      <ListGroup.Item>
-                        Mock Interview:{" "}
-                        {selectedStudent.certifications.mockInterview
-                          ? "✅"
-                          : "❌"}
-                      </ListGroup.Item>
-                      <ListGroup.Item>
-                        Git Hub:{" "}
-                        {selectedStudent.certifications.github ? "✅" : "❌"}
-                      </ListGroup.Item>
-                    </ListGroup>
-                  </Card>
-                </Col>
-              </Row>
-            </Container>
-          </Modal.Body>
-          <Modal.Footer>
-            <Card.Title>Status:</Card.Title>
-            <ListGroup
-              className={trackStatus === "On Track" ? "on-track" : "off-track"}
-            >
-              {onTrack()}
-            </ListGroup>
-          </Modal.Footer>
-        </Modal>
-      )}
+  <Modal
+    className="modal-detail"
+    show={selectedStudent !== null}
+    onHide={handleClose}
+  >
+    <Modal.Header closeButton>
+      <Modal.Title>{selectedStudent?.names?.preferredName}</Modal.Title>
+    </Modal.Header>
+    <Modal.Body className="gridView-modal">
+      <Container>
+        <Row>
+          <Col xs={12} md={8}>
+            <img
+              src={selectedStudent?.profilePhoto}
+              alt={`${selectedStudent?.name?.preferredName}'s profile`}
+              className="student-image"
+            />
+          </Col>
+          <Card className="modal-status-title">
+              <Card.Title>Status:</Card.Title>
+              <ListGroup
+                className={trackStatus === "On Track" ? "on-track" : "off-track"}
+              >
+                {onTrack()}
+              </ListGroup>
+            </Card>
+        </Row>
+
+        <Row>
+          <Col xs={6} md={4}>
+            <Card className="modal-codewars">
+              <Card.Title>CodeWars:</Card.Title>
+              <ListGroup>
+                <ListGroup.Item className="modal-current">
+                  Current Total: {selectedStudent.codewars.current.total}
+                </ListGroup.Item>
+                <ListGroup.Item className="modal-lastweek">
+                  Last Week: {selectedStudent.codewars.current.lastWeek}
+                </ListGroup.Item>
+                <ListGroup.Item className="modal-goal">
+                  Goal: {selectedStudent.codewars.goal.total}
+                </ListGroup.Item>
+                <ListGroup.Item className="modal-percent">
+                  Percent of Goal Achieved:{" "}
+                  {(
+                    (selectedStudent.codewars.current.total /
+                      selectedStudent.codewars.goal.total) *
+                    100
+                  ).toFixed(0)}
+                  %
+                </ListGroup.Item>
+              </ListGroup>
+            </Card>
+          </Col>
+          <Col xs={6} md={4}>
+            <Card className="modal-score">
+              <Card.Title>Scores:</Card.Title>
+              <ListGroup>
+                <ListGroup.Item className="modal-assignments">
+                  Assignments: {selectedStudent.cohort.scores.assignments * 100}%
+                </ListGroup.Item>
+                <ListGroup.Item className="modal-projects">
+                  Projects: {selectedStudent.cohort.scores.projects * 100}%
+                </ListGroup.Item>
+                <ListGroup.Item className="modal-assessments">
+                  Assessments: {selectedStudent.cohort.scores.assessments * 100}%
+                </ListGroup.Item>
+              </ListGroup>
+            </Card>
+          </Col>
+          <Col xs={6} md={4}>
+            <Card className="modal-certifications">
+              <Card.Title>Certifications:</Card.Title>
+              <ListGroup>
+                <ListGroup.Item className="modal-resume">
+                  Resume: {selectedStudent.certifications.resume ? "✅" : "❌"}
+                </ListGroup.Item>
+                <ListGroup.Item className="modal-linkedin">
+                  LinkedIn: {selectedStudent.certifications.linkedin ? "✅" : "❌"}
+                </ListGroup.Item>
+                <ListGroup.Item className="modal-mockInterview">
+                  Mock Interview: {selectedStudent.certifications.mockInterview ? "✅" : "❌"}
+                </ListGroup.Item>
+                <ListGroup.Item className="modal-github">
+                  Git Hub: {selectedStudent.certifications.github ? "✅" : "❌"}
+                </ListGroup.Item>
+              </ListGroup>
+            </Card>
+          </Col>
+        </Row>
+      </Container>
+    </Modal.Body>
+      </Modal>
+)}
+</div>
     </div>
   );
 }

@@ -1,13 +1,22 @@
 .student {
-    border: 2px solid black;
+    border: 10px solid black;
     margin: 20px;
-    background: url("public/pursuit_arrowbg_purple.jpg");
-    width: 750px;
-    padding: 20px; 
+    background: url("public/pursuit-wordmark-black background.jpeg");
+    background-size: 43em;
+    background-position-x: right;
+    background-position-y: center;
+    background-repeat: no-repeat;
+    background-color: blue;
+    width: 950px;
+    padding: 20px;
     transition: transform .3s ease, z-index 0s ease .3s, box-shadow .3s ease;
     position: relative;
     z-index: 1;
+    border-radius: 10px; 
 }
+
+
+
 
 .show-more {
     width: 15%;
@@ -31,5 +40,11 @@
     margin: 0 auto;
   }
   
-
+ div.card.border-info {
+    border-color: black ;
+    border-radius: 10px; 
+  }
   
+  .student image {
+    border-radius: 10px;
+  }

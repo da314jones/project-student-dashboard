@@ -22,7 +22,8 @@ const handleAddNote = (newNote) => {
 
 
   return (
-    <Card className="student">
+
+    <Card  className="student">
       <Card.Img
         src={student.profilePhoto}
         className={`student-image ${showMore ? "enlarge" : ""}`}
