@@ -16,6 +16,7 @@ export default function StudentGrid({
   setSelectedCohort,
   onAddNote,
   notes,
+  unenrollStudent,
 }) {
   const [selectedStudent, setSelectedStudent] = useState(null);
 
@@ -80,7 +81,7 @@ export default function StudentGrid({
                 <p className="student-name">{student.names.preferredName}</p>
                 <p className="cohort-code">{student.cohort.cohortCode}</p>
                 <button onClick={(e) => {
-                e.stopPropagation(); // Prevent the card's click event from firing
+                e.stopPropagation(); 
                 unenrollStudent(student.id);
               }} className="unenroll-button">
                 Unenroll

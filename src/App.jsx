@@ -12,6 +12,8 @@ function App() {
   const [selectedStudent, setSelectedStudent] = useState(null);
   const [view, setView] = useState("grid");
   const [notes, setNotes] = useState([]);
+  const [currentStudents, setCurrentStudents] = useState(students);
+
 
   const onAddNote = (newNote, studentId) => {
     setNotes({...notes, [studentId] : [...(notes[studentId] || []), newNote],
@@ -26,8 +28,8 @@ function App() {
 
   const studentsFilteredByCohort =
     selectedCohort === "All"
-      ? students
-      : students.filter((student) => {
+      ? currentStudents
+      : currentStudents.filter((student) => {
           const cohortCode = student.cohort.cohortCode;
           const [season, year] = cohortCode.split(/(\d+)/);
           return `${season} ${year}` === selectedCohort;
@@ -38,7 +40,7 @@ function App() {
   ];
 
   const studentCount = () => {
-    return students.length;
+    return currentStudents.length;
   };
 
   const handleStudentClick = (student, onAddNote, studentNotes) => {
@@ -50,6 +52,12 @@ function App() {
   const toggleView = () => {
     setView((prevView) => (prevView === "list" ? "grid" : "list"));
   };
+
+  const unenrollStudent = (studentId) => {
+    const updatedStudents = currentStudents.filter(student => student.id !== studentId);
+    setCurrentStudents(updatedStudents);
+}
+
 
   return (
     <>
@@ -90,7 +98,7 @@ function App() {
             setSelectedCohort={setSelectedCohort}
             onAddNote={onAddNote}
             notes={notes}
-
+            unenrollStudent={unenrollStudent}
           />
         ) : (
           <StudentDetails student={selectedStudent} onAddNote={onAddNote} />
