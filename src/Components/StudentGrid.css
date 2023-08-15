@@ -1,9 +1,8 @@
-   /* Center the student grid */
-   body { /* or replace with the class or ID of the main container that wraps the student grid */
+   body { 
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh; /* Full viewport height */
+    min-height: 100vh; 
     margin: 0;
     padding: 0;
   }
@@ -49,7 +48,7 @@
     background-image: url("public/pursuit-wordmark-black background.jpeg");
     background-size: cover;
     background-repeat: no-repeat;
-    border-radius: 10px; /* Round the corners */
+    border-radius: 10px; 
   }
   
   .layout {
